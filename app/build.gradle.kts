@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -53,7 +54,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("com.github.bumptech.glide:glide:4.13.1")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     val room_version = "2.5.2"
     ksp("androidx.room:room-compiler:$room_version")
@@ -92,4 +93,10 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:$fragment_ktx_version")
 
     implementation("me.relex:circleindicator:2.1.6")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+    implementation("com.google.firebase:firebase-analytics-ktx:21.3.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.7.1")
+    implementation("com.google.firebase:firebase-storage-ktx:20.2.1")
 }
