@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="kPrimaryColor">#FF5C40CC</color>
+    <color name="kBlackColor">#FF1F1449</color>
+    <color name="kGreyColor">#FF9698A9</color>
+    <color name="kGreenColor">#FF0EC3AE</color>
+    <color name="kRedColor">#FFEB70A5</color>
+    <color name="kBackgroundColor">#FFFAFAFA</color>
+    <color name="kInactiveColor">#FFDBD7EC</color>
+    <color name="kUnavailableColor">#FFEBECF1</color>
+    <color name="kAvailableColor">#FFE0D9FF</color>
+</resources>
