@@ -43,6 +43,9 @@ class RemoteDataSource @Inject constructor(
                     result.onNext(ApiResponse.Error(it.exception?.message.toString()))
                     Log.e("REMOTE SIGN UP", it.exception.toString())
                 }
+            }.addOnFailureListener {
+                result.onNext(ApiResponse.Error(it.message.toString()))
+                Log.e("REMOTE SIGN UP", it.toString())
             }
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
@@ -60,6 +63,10 @@ class RemoteDataSource @Inject constructor(
                     result.onNext(ApiResponse.Error(it.exception?.message.toString()))
                     Log.e("REMOTE SIGN IN", it.exception.toString())
                 }
+            }
+            .addOnFailureListener {
+                result.onNext(ApiResponse.Error(it.message.toString()))
+                Log.e("REMOTE SIGN IN", it.toString())
             }
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
@@ -81,6 +88,8 @@ class RemoteDataSource @Inject constructor(
             if (!it.isSuccessful) {
                 Log.e("REMOTE SET USER", it.exception.toString())
             }
+        }.addOnFailureListener {
+            Log.e("REMOTE SIGN IN", it.toString())
         }
         return Completable.complete()
     }
@@ -107,6 +116,10 @@ class RemoteDataSource @Inject constructor(
                     result.onNext(ApiResponse.Error(it.exception?.message.toString()))
                     Log.e("REMOTE SIGN IN", it.exception.toString())
                 }
+            }
+            .addOnFailureListener {
+                result.onNext(ApiResponse.Error(it.message.toString()))
+                Log.e("REMOTE SIGN IN", it.toString())
             }
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }

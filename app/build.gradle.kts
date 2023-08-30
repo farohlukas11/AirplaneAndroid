@@ -68,7 +68,9 @@ dependencies {
 
     val lifecycle_ktx_version = "2.6.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_ktx_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:$lifecycle_ktx_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_ktx_version")
+    implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_ktx_version")
 
     val rxjava_version = "2.2.19"
     implementation("io.reactivex.rxjava2:rxjava:$rxjava_version")
