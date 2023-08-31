@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
+import com.faroh.airplaneandroid.MainActivity
 import com.faroh.airplaneandroid.databinding.ActivitySplashBinding
 import com.faroh.airplaneandroid.view.bonus.BonusSaldoActivity
 import com.faroh.airplaneandroid.view.getstarted.GetStartedActivity
@@ -29,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             splashViewModel.stateUser.observe(this) {
                 if (it) {
-                    startActivity(Intent(this, BonusSaldoActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                 } else {
                     startActivity(Intent(this, GetStartedActivity::class.java))
                 }

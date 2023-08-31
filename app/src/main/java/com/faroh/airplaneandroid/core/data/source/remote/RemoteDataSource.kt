@@ -2,12 +2,13 @@ package com.faroh.airplaneandroid.core.data.source.remote
 
 import android.util.Log
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
+import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseUser
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
-import com.faroh.airplaneandroid.core.domain.model.UserJson
 import com.faroh.airplaneandroid.core.domain.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -77,45 +78,33 @@ class RemoteDataSource @Inject constructor(
     }
 
     fun setUser(userModel: UserModel): Completable {
-        firebaseFirestore.collection("users").document(userModel.id!!).set({
-            UserJson(
-                email = userModel.email,
-                name = userModel.name,
-                hobby = userModel.hobby,
-                balance = userModel.balance
-            )
-        }).addOnCompleteListener {
-            if (!it.isSuccessful) {
-                Log.e("REMOTE SET USER", it.exception.toString())
+        val user = HashMap<String, Any>()
+        user["balance"] = userModel.balance
+        user["email"] = userModel.email!!
+        user["hobby"] = userModel.hobby
+        user["name"] = userModel.name!!
+
+        firebaseFirestore.collection("users").document(userModel.id!!)
+            .set(user).addOnCompleteListener {
+                if (!it.isSuccessful) {
+                    Log.e("REMOTE SET USER", it.exception.toString())
+                }
+            }.addOnFailureListener {
+                Log.e("REMOTE SIGN IN", it.toString())
             }
-        }.addOnFailureListener {
-            Log.e("REMOTE SIGN IN", it.toString())
-        }
         return Completable.complete()
     }
 
-    fun getUserById(id: String): Flowable<ApiResponse<UserModel>> {
-        val result = PublishSubject.create<ApiResponse<UserModel>>()
+    fun getUserById(id: String): Flowable<ApiResponse<ResponseUser>> {
+        val result = PublishSubject.create<ApiResponse<ResponseUser>>()
 
-        firebaseFirestore.collection("users").document(id).get()
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    val data = it.result
-                    result.onNext(
-                        if (data != null) ApiResponse.Success(
-                            UserModel(
-                                id = data.id,
-                                email = data.get("email").toString(),
-                                name = data.get("name").toString(),
-                                hobby = data.get("hobby").toString(),
-                                balance = data.get("balance") as Int,
-                            )
-                        ) else ApiResponse.Empty
-                    )
-                } else {
-                    result.onNext(ApiResponse.Error(it.exception?.message.toString()))
-                    Log.e("REMOTE SIGN IN", it.exception.toString())
-                }
+        firebaseFirestore.collection("users").document(id).get(Source.SERVER)
+            .addOnSuccessListener { snapshot ->
+                result.onNext(
+                    if (snapshot != null) ApiResponse.Success(
+                        snapshot.toObject(ResponseUser::class.java)!!
+                    ) else ApiResponse.Empty
+                )
             }
             .addOnFailureListener {
                 result.onNext(ApiResponse.Error(it.message.toString()))

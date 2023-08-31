@@ -4,6 +4,153 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/kBackgroundColor"
     tools:context=".view.bonus.BonusSaldoActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_card"
+        android:layout_width="0dp"
+        android:layout_height="211dp"
+        android:layout_marginHorizontal="38dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/custom_background_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/iv_card"
+        app:layout_constraintTop_toTopOf="@id/iv_card" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/iv_plane"
+        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        tools:text="Kezia Anne" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_plane"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="6dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_plane"
+        app:layout_constraintBottom_toBottomOf="@id/tv_pay"
+        app:layout_constraintEnd_toStartOf="@id/tv_pay"
+        app:layout_constraintTop_toTopOf="@id/tv_pay" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/pay"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_name_user"
+        app:layout_constraintEnd_toEndOf="@id/iv_card"
+        app:layout_constraintTop_toTopOf="@id/tv_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_balance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/balance"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/tv_name_user"
+        app:layout_constraintTop_toBottomOf="@id/tv_name_user" />
+
+    <TextView
+        android:id="@+id/tv_balance_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="@id/iv_card"
+        app:layout_constraintStart_toStartOf="@id/tv_balance"
+        app:layout_constraintTop_toBottomOf="@id/tv_balance"
+        tools:text="IDR 280.000.000" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_big_bonus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="91dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/big_bonus"
+        android:textColor="@color/kBlackColor"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_card" />
+
+    <TextView
+        android:id="@+id/tv_you_give"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="center"
+        android:text="@string/we_give_you_early_credit_so_that_nyou_can_buy_a_flight_ticket"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_big_bonus" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start_fly"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="77dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/custom_background_button"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/start_fly_now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_you_give" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?attr/progressBarStyle"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
 import com.faroh.airplaneandroid.core.domain.model.UserModel
 import com.faroh.airplaneandroid.core.domain.repository.IAirplaneRepository
+import com.faroh.airplaneandroid.core.utils.Mapper
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -82,7 +83,14 @@ class AirplaneRepository @Inject constructor(
             .take(1)
             .subscribe {
                 when (it) {
-                    is ApiResponse.Success -> result.onNext(Resource.Success(it.data))
+                    is ApiResponse.Success -> result.onNext(
+                        Resource.Success(
+                            Mapper.mapUserResponseToModel(
+                                it.data
+                            )
+                        )
+                    )
+
                     is ApiResponse.Empty -> result.onNext(Resource.Success(null))
                     is ApiResponse.Error -> result.onNext(Resource.Error(it.errorMessage))
                 }
