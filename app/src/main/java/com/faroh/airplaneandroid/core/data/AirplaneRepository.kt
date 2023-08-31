@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.faroh.airplaneandroid.core.data.source.preferences.AirplanePreference
 import com.faroh.airplaneandroid.core.data.source.remote.RemoteDataSource
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
+import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
 import com.faroh.airplaneandroid.core.domain.model.UserModel
@@ -27,6 +28,7 @@ class AirplaneRepository @Inject constructor(
     override fun signUp(signUpBody: SignUpBody): Flowable<Resource<UserModel>> {
         val result = PublishSubject.create<Resource<UserModel>>()
 
+        result.onNext(Resource.Loading())
         remoteDataSource.signUp(signUpBody)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -45,6 +47,7 @@ class AirplaneRepository @Inject constructor(
     override fun signIn(signInBody: SignInBody): Flowable<Resource<String>> {
         val result = PublishSubject.create<Resource<String>>()
 
+        result.onNext(Resource.Loading())
         remoteDataSource.signIn(signInBody)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -77,6 +80,7 @@ class AirplaneRepository @Inject constructor(
     override fun getUserById(id: String): Flowable<Resource<UserModel>> {
         val result = PublishSubject.create<Resource<UserModel>>()
 
+        result.onNext(Resource.Loading())
         remoteDataSource.getUserById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -109,4 +113,29 @@ class AirplaneRepository @Inject constructor(
     }
 
     override fun getUserState(): Flow<Boolean> = preference.getUserState()
+
+    @SuppressLint("CheckResult")
+    override fun getAllDestination(): Flowable<Resource<List<DestinationModel>>> {
+        val result = PublishSubject.create<Resource<List<DestinationModel>>>()
+
+        result.onNext(Resource.Loading())
+        remoteDataSource.getAllDestination()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it) {
+                    is ApiResponse.Success -> result.onNext(
+                        Resource.Success(
+                            Mapper.mapDestinationResponseToModel(
+                                it.data
+                            )
+                        )
+                    )
+
+                    is ApiResponse.Empty -> result.onNext(Resource.Success(null))
+                    is ApiResponse.Error -> result.onNext(Resource.Error(it.errorMessage))
+                }
+            }
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
 }

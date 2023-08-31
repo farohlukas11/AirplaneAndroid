@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/icon_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/transaction"
+        android:enabled="true"
+        android:icon="@drawable/icon_booking"
+        android:title="@string/transaction" />
+
+    <item
+        android:id="@+id/saldo"
+        android:enabled="true"
+        android:icon="@drawable/icon_card"
+        android:title="@string/saldo" />
+
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/icon_setting"
+        android:title="@string/settings" />
+
+</menu>

@@ -27,7 +27,8 @@ class BonusSaldoActivity : AppCompatActivity() {
         setContentView(bonusSaldoBinding.root)
 
         bonusSaldoViewModel.getUserToken().observe(this) {
-
+            bonusSaldoBinding.progressBar.visibility =
+                View.VISIBLE
             it?.let { idUser ->
                 bonusSaldoViewModel.getUserById(idUser).observe(this) { response ->
                     when (response) {
@@ -46,13 +47,16 @@ class BonusSaldoActivity : AppCompatActivity() {
                             }
                         }
 
-                        is Resource.Error -> Toast(
-                            this@BonusSaldoActivity
-                        ).showCustomToast(
-                            true,
-                            response.message.toString(),
-                            this@BonusSaldoActivity
-                        )
+                        is Resource.Error -> {
+                            bonusSaldoBinding.progressBar.visibility = View.GONE
+                            Toast(
+                                this@BonusSaldoActivity
+                            ).showCustomToast(
+                                true,
+                                response.message.toString(),
+                                this@BonusSaldoActivity
+                            )
+                        }
                     }
                 }
             }

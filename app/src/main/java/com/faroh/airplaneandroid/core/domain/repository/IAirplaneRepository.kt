@@ -1,6 +1,7 @@
 package com.faroh.airplaneandroid.core.domain.repository
 
 import com.faroh.airplaneandroid.core.data.Resource
+import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
 import com.faroh.airplaneandroid.core.domain.model.UserModel
@@ -26,4 +27,6 @@ interface IAirplaneRepository {
     suspend fun setUserState(state: Boolean)
 
     fun getUserState(): Flow<Boolean>
+
+    fun getAllDestination(): Flowable<Resource<List<DestinationModel>>>
 }

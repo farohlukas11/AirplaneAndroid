@@ -2,6 +2,7 @@ package com.faroh.airplaneandroid.core.data.source.remote
 
 import android.util.Log
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
+import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseDestination
 import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseUser
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
@@ -9,6 +10,7 @@ import com.faroh.airplaneandroid.core.domain.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
+import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -109,6 +111,25 @@ class RemoteDataSource @Inject constructor(
             .addOnFailureListener {
                 result.onNext(ApiResponse.Error(it.message.toString()))
                 Log.e("REMOTE SIGN IN", it.toString())
+            }
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    fun getAllDestination(): Flowable<ApiResponse<List<ResponseDestination>>> {
+        val result = PublishSubject.create<ApiResponse<List<ResponseDestination>>>()
+
+        firebaseFirestore.collection("destinations").get()
+            .addOnSuccessListener { snapshot ->
+                val data = snapshot.documents
+                result.onNext(
+                    if (snapshot != null) ApiResponse.Success(data.map {
+                        it.toObject(ResponseDestination::class.java)!!
+                    }) else ApiResponse.Empty
+                )
+            }
+            .addOnFailureListener {
+                result.onNext(ApiResponse.Error(it.message.toString()))
+                Log.e("REMOTE GET ALL DESTINATION", it.toString())
             }
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }

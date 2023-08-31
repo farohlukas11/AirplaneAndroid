@@ -32,13 +32,15 @@ class SignInActivity : AppCompatActivity() {
         signInBinding.btnSignIn.setOnClickListener {
             val email = signInBinding.etEmail.text.toString()
             val password = signInBinding.etPassword.text.toString()
-                
+
             when {
                 email.isEmpty() && password.isEmpty() -> Toast(
                     this@SignInActivity
                 ).showCustomToast(true, "input must be required filled", this@SignInActivity)
 
                 else -> {
+                    signInBinding.progressBar.visibility =
+                        View.VISIBLE
                     signInViewModel.signIn(
                         SignInBody(
                             email = email,
@@ -72,17 +74,21 @@ class SignInActivity : AppCompatActivity() {
                                             BonusSaldoActivity::class.java
                                         )
                                     )
-                                    finish()
+                                    this@SignInActivity.finish()
                                 }
                             }
 
-                            is Resource.Error -> Toast(
-                                this@SignInActivity
-                            ).showCustomToast(
-                                true,
-                                response.message.toString(),
-                                this@SignInActivity
-                            )
+                            is Resource.Error -> {
+                                signInBinding.progressBar.visibility =
+                                    View.GONE
+                                Toast(
+                                    this@SignInActivity
+                                ).showCustomToast(
+                                    true,
+                                    response.message.toString(),
+                                    this@SignInActivity
+                                )
+                            }
                         }
                     }
                 }

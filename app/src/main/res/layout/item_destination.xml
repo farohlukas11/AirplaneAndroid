@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_item_destination"
+    android:layout_width="200dp"
+    android:layout_height="323dp"
+    android:layout_marginHorizontal="12dp"
+    android:background="@color/white"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_destination"
+            android:layout_width="180dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_destination_1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_bg_rating"
+            android:layout_width="54.5dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_background_rating_destination"
+            app:layout_constraintEnd_toEndOf="@id/iv_destination"
+            app:layout_constraintTop_toTopOf="@id/iv_destination" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textAlignment="center"
+            android:textColor="@color/kBlackColor"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_rating"
+            app:layout_constraintTop_toTopOf="@id/iv_bg_rating"
+            tools:text="4.8" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="1dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_star"
+            app:layout_constraintBottom_toBottomOf="@id/tv_rating"
+            app:layout_constraintEnd_toStartOf="@id/tv_rating"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name_destination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/kBlackColor"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_destination"
+            tools:text="Lake Ciliwung" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_place_destination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_light"
+            android:maxLines="1"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_destination"
+            tools:text="Tangerang" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

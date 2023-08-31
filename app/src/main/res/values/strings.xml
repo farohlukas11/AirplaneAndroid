@@ -19,4 +19,12 @@
     <string name="big_bonus">Big Bonus 🎉</string>
     <string name="we_give_you_early_credit_so_that_nyou_can_buy_a_flight_ticket">We give you early credit so that\nyou can buy a flight ticket</string>
     <string name="start_fly_now">Start Fly Now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="where_to_fly_today">Where to fly today?</string>
+    <string name="home">Home</string>
+    <string name="transaction">Transaction</string>
+    <string name="saldo">Saldo</string>
+    <string name="settings">Settings</string>
+    <string name="howdy_name">Howdy,\n%1$s</string>
 </resources>

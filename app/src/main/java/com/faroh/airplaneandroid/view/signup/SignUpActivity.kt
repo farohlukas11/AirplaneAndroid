@@ -40,6 +40,8 @@ class SignUpActivity : AppCompatActivity() {
                 ).showCustomToast(true, "input must be required filled", this@SignUpActivity)
 
                 else -> {
+                    signUpBinding.progressBar.visibility =
+                        View.VISIBLE
                     signUpViewModel.signUp(
                         SignUpBody(
                             email = email,
@@ -73,17 +75,19 @@ class SignUpActivity : AppCompatActivity() {
                                             SignInActivity::class.java
                                         )
                                     )
-                                    finish()
                                 }
                             }
 
-                            is Resource.Error -> Toast(
-                                this@SignUpActivity
-                            ).showCustomToast(
-                                true,
-                                response.message.toString(),
-                                this@SignUpActivity
-                            )
+                            is Resource.Error -> {
+                                signUpBinding.progressBar.visibility = View.GONE
+                                Toast(
+                                    this@SignUpActivity
+                                ).showCustomToast(
+                                    true,
+                                    response.message.toString(),
+                                    this@SignUpActivity
+                                )
+                            }
                         }
                     }
                 }

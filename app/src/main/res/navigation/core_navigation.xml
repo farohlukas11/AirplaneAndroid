@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/core_navigation"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.faroh.airplaneandroid.view.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/transaction"
+        android:name="com.faroh.airplaneandroid.view.transaction.TransactionFragment"
+        android:label="@string/transaction"
+        tools:layout="@layout/fragment_transaction" />
+
+    <fragment
+        android:id="@+id/saldo"
+        android:name="com.faroh.airplaneandroid.view.saldo.SaldoFragment"
+        android:label="@string/saldo"
+        tools:layout="@layout/fragment_saldo" />
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.faroh.airplaneandroid.view.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>
