@@ -27,4 +27,7 @@
     <string name="saldo">Saldo</string>
     <string name="settings">Settings</string>
     <string name="howdy_name">Howdy,\n%1$s</string>
+    <string name="new_this_year">New This Year</string>
+    <string name="about">About</string>
+    <string name="photos">Photos</string>
 </resources>

@@ -50,6 +50,32 @@
             app:layout_constraintTop_toBottomOf="@id/tv_where_fly"
             tools:listitem="@layout/item_destination" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_new_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/new_this_year"
+            android:textColor="@color/kBlackColor"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_destination" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_new_destination"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="24dp"
+            android:paddingBottom="120dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_new_year"
+            tools:listitem="@layout/item_new_destination" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

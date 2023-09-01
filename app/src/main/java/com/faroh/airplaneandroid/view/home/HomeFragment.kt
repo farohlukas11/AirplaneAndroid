@@ -13,6 +13,7 @@ import com.faroh.airplaneandroid.R
 import com.faroh.airplaneandroid.core.data.Resource
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.ui.ListDestinationAdapter
+import com.faroh.airplaneandroid.core.ui.ListNewDestinationAdapter
 import com.faroh.airplaneandroid.core.utils.ToastUtils.showCustomToast
 import com.faroh.airplaneandroid.databinding.FragmentHomeBinding
 import com.faroh.airplaneandroid.view.detail.DetailActivity
@@ -78,6 +79,9 @@ class HomeFragment : Fragment() {
                             false
                         )
 
+                        homeBinding.rvNewDestination.layoutManager =
+                            LinearLayoutManager(requireContext())
+
                         val listDestination = arrayListOf<DestinationModel>()
                         for (destination in it) {
                             listDestination.add(destination)
@@ -91,6 +95,20 @@ class HomeFragment : Fragment() {
                                 startActivity(intentDetail)
                             }
                         homeBinding.rvDestination.adapter = listDestinationAdapter
+
+                        val listNewDestination = arrayListOf<DestinationModel>()
+                        for (destination in it.filter { d -> d.price!! <= 3000000 }) {
+                            listNewDestination.add(destination)
+                        }
+
+                        val listNewDestinationAdapter =
+                            ListNewDestinationAdapter(listNewDestination) { newDestination ->
+                                val intentDetail =
+                                    Intent(requireActivity(), DetailActivity::class.java)
+                                intentDetail.putExtra(DetailActivity.DATA_DETAIL, newDestination)
+                                startActivity(intentDetail)
+                            }
+                        homeBinding.rvNewDestination.adapter = listNewDestinationAdapter
                     }
                 }
 
