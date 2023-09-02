@@ -74,7 +74,7 @@ class SignInActivity : AppCompatActivity() {
                                             BonusSaldoActivity::class.java
                                         )
                                     )
-                                    this@SignInActivity.finish()
+                                    finishAffinity()
                                 }
                             }
 

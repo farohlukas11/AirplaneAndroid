@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.faroh.airplaneandroid.R
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.databinding.ActivityDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
