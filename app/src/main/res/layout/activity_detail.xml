@@ -143,6 +143,187 @@
             app:layout_constraintStart_toStartOf="@id/iv_background_detail"
             app:layout_constraintTop_toBottomOf="@id/tv_description" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_photos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingHorizontal="12dp"
+            app:layout_constraintEnd_toEndOf="@id/iv_background_detail"
+            app:layout_constraintStart_toStartOf="@id/iv_background_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_photos"
+            tools:listitem="@layout/item_photos"
+            tools:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_interests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/interests"
+            android:textColor="@color/kBlackColor"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/iv_background_detail"
+            app:layout_constraintTop_toBottomOf="@id/rv_photos" />
+
+        <LinearLayout
+            android:id="@+id/line_1"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/iv_background_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_interests">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/kids_park"
+                android:textAlignment="center"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/line_1"
+            app:layout_constraintStart_toEndOf="@id/line_1"
+            app:layout_constraintTop_toTopOf="@id/line_1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/honor_bridge"
+                android:textAlignment="center"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_2"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/iv_background_detail"
+            app:layout_constraintTop_toBottomOf="@id/line_1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/city_museum"
+                android:textAlignment="center"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/line_2"
+            app:layout_constraintStart_toEndOf="@id/line_2"
+            app:layout_constraintTop_toTopOf="@id/line_2">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/central_mall"
+                android:textAlignment="center"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="31dp"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/kBlackColor"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_background_detail"
+            tools:text="IDR 2.500.000" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_per"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/per_orang"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_price_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_price_detail" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_book_now"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/custom_background_button"
+            android:text="@string/book_now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_per"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_price_detail" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

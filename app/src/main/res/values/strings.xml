@@ -30,4 +30,11 @@
     <string name="new_this_year">New This Year</string>
     <string name="about">About</string>
     <string name="photos">Photos</string>
+    <string name="interests">Interests</string>
+    <string name="kids_park">Kids Park</string>
+    <string name="honor_bridge">Honor Bridge</string>
+    <string name="city_museum">City Museum</string>
+    <string name="central_mall">Central Mall</string>
+    <string name="per_orang">per orang</string>
+    <string name="book_now">Book Now</string>
 </resources>
