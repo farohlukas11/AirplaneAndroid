@@ -1,5 +1,6 @@
 package com.faroh.airplaneandroid.view.detail
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.ui.ListPhotosAdapter
 import com.faroh.airplaneandroid.core.utils.Formatter
 import com.faroh.airplaneandroid.databinding.ActivityDetailBinding
+import com.faroh.airplaneandroid.view.chooseseat.ChooseSeatActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -66,7 +68,9 @@ class DetailActivity : AppCompatActivity() {
         }
 
         detailBinding.btnBookNow.setOnClickListener {
-
+            val intentSeat = Intent(this, ChooseSeatActivity::class.java)
+            intentSeat.putExtra(ChooseSeatActivity.DATA_SEAT, dataDestination)
+            startActivity(intentSeat)
         }
     }
 

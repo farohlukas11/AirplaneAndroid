@@ -37,4 +37,12 @@
     <string name="central_mall">Central Mall</string>
     <string name="per_orang">per orang</string>
     <string name="book_now">Book Now</string>
+    <string name="select_your_nfavorite_seat">Select Your\nFavorite Seat</string>
+    <string name="available">Available</string>
+    <string name="selected">Selected</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
 </resources>
