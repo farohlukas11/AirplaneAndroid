@@ -1,9 +1,554 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/kBackgroundColor"
+    android:fillViewport="true"
     tools:context=".view.checkout.CheckoutActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_top_checkout"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginHorizontal="42dp"
+            android:layout_marginTop="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/image_checkout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cgk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/cgk"
+            android:textColor="@color/kBlackColor"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@id/iv_top_checkout"
+            app:layout_constraintTop_toBottomOf="@id/iv_top_checkout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tlc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/tlc"
+            android:textColor="@color/kBlackColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@id/iv_top_checkout"
+            app:layout_constraintTop_toBottomOf="@id/iv_top_checkout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/tangerang"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_cgk"
+            app:layout_constraintTop_toBottomOf="@id/tv_cgk" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/ciliwung"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_tlc"
+            app:layout_constraintTop_toBottomOf="@id/tv_cgk" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_bg_book"
+            android:layout_width="match_parent"
+            android:layout_height="440dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_background_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_cil" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_destination_book"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toTopOf="@id/iv_bg_book"
+            tools:src="@drawable/image_destination_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="38dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/kBlackColor"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_star_book"
+            app:layout_constraintStart_toEndOf="@id/iv_destination_book"
+            app:layout_constraintTop_toTopOf="@id/iv_bg_book"
+            tools:text="Lake Ciliwung" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_city_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_light"
+            android:maxLines="1"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_star_book"
+            app:layout_constraintStart_toStartOf="@id/tv_name_book"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_book"
+            tools:text="Tangerang" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_star_book"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_star"
+            app:layout_constraintBottom_toBottomOf="@id/tv_rating_book"
+            app:layout_constraintEnd_toStartOf="@id/tv_rating_book"
+            app:layout_constraintTop_toTopOf="@id/tv_rating_book" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rating_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/kBlackColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_destination_book"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintTop_toTopOf="@id/iv_destination_book"
+            tools:text="4.8" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_book_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/booking_details"
+            android:textColor="@color/kBlackColor"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@id/iv_destination_book" />
+
+        <LinearLayout
+            android:id="@+id/line_traveler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/tv_book_detail">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/traveler"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_person"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/_2_person"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_seat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/line_traveler">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/seat"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_seat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp"
+                tools:text="A3, B3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_insurance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/line_seat">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/insurance"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_insurance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/yes"
+                android:textColor="@color/kGreenColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_refundable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/line_insurance">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/refundable"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/no"
+                android:textColor="@color/kRedColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_vat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/line_refundable">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/vat"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/_45"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/line_vat">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/price"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_price_book"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp"
+                tools:text="IDR 8.500.690" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_grand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_book"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_book"
+            app:layout_constraintTop_toBottomOf="@+id/line_price">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/grand_total"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_grand_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:textColor="@color/kPrimaryColor"
+                android:textSize="14sp"
+                tools:text="IDR 12.000.000" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_bg_pay_detail"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_background_detail"
+            app:layout_constraintTop_toBottomOf="@id/iv_bg_book" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_pay_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/payment_details"
+            android:textColor="@color/kBlackColor"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_pay_detail"
+            app:layout_constraintTop_toTopOf="@id/iv_bg_pay_detail" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_bg_card_pay"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/custom_background_card"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_pay_detail"
+            app:layout_constraintTop_toBottomOf="@id/tv_pay_detail" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_plane_card"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_plane"
+            app:layout_constraintBottom_toBottomOf="@id/iv_bg_card_pay"
+            app:layout_constraintStart_toStartOf="@id/iv_bg_card_pay"
+            app:layout_constraintTop_toTopOf="@id/iv_bg_card_pay" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/pay"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_plane_card"
+            app:layout_constraintStart_toEndOf="@id/iv_plane_card"
+            app:layout_constraintTop_toTopOf="@id/iv_plane_card" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price_pay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/kBlackColor"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/iv_bg_pay_detail"
+            app:layout_constraintStart_toEndOf="@id/iv_bg_card_pay"
+            app:layout_constraintTop_toBottomOf="@id/tv_pay_detail"
+            tools:text="IDR 80.400.000" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/current_balance"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_price_pay"
+            app:layout_constraintTop_toBottomOf="@id/tv_price_pay" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_pay_now"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_background_button"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/pay_now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_bg_pay_detail" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="30dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/terms_and_conditions"
+            android:textColor="@color/kGreyColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_pay_now" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

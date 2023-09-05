@@ -53,4 +53,24 @@
     <string name="your_seat">Your seat</string>
     <string name="total">Total</string>
     <string name="continue_to_checkout">Continue to Checkout</string>
+    <string name="cgk">CGK</string>
+    <string name="tlc">TLC</string>
+    <string name="tangerang">Tangerang</string>
+    <string name="ciliwung">Ciliwung</string>
+    <string name="booking_details">Booking Details</string>
+    <string name="traveler">Traveler</string>
+    <string name="seat">Seat</string>
+    <string name="insurance">Insurance</string>
+    <string name="_2_person">2 person</string>
+    <string name="yes">YES</string>
+    <string name="refundable">Refundable</string>
+    <string name="no">NO</string>
+    <string name="vat">VAT</string>
+    <string name="_45">45%</string>
+    <string name="price">Price</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
 </resources>

@@ -24,4 +24,14 @@ object Mapper {
                 rating = it.rating
             )
         }
+
+    fun mapUserModelToJson(userModel: UserModel): HashMap<String, Any> {
+        val user = HashMap<String, Any>()
+        user["balance"] = userModel.balance
+        user["email"] = userModel.email!!
+        user["hobby"] = userModel.hobby
+        user["name"] = userModel.name!!
+
+        return user
+    }
 }

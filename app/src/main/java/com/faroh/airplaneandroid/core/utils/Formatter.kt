@@ -6,7 +6,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 object Formatter {
-    fun rupiahFormatter(price: Int): String {
+    fun <T> rupiahFormatter(price: T): String {
         val kursId = DecimalFormat.getCurrencyInstance() as DecimalFormat
         val rupiah = DecimalFormatSymbols()
         rupiah.groupingSeparator = '.'

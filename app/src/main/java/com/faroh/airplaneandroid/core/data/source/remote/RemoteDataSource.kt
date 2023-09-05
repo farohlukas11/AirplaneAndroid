@@ -7,10 +7,10 @@ import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseUser
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
 import com.faroh.airplaneandroid.core.domain.model.UserModel
+import com.faroh.airplaneandroid.core.utils.Mapper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
-import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -80,14 +80,8 @@ class RemoteDataSource @Inject constructor(
     }
 
     fun setUser(userModel: UserModel): Completable {
-        val user = HashMap<String, Any>()
-        user["balance"] = userModel.balance
-        user["email"] = userModel.email!!
-        user["hobby"] = userModel.hobby
-        user["name"] = userModel.name!!
-
         firebaseFirestore.collection("users").document(userModel.id!!)
-            .set(user).addOnCompleteListener {
+            .set(Mapper.mapUserModelToJson(userModel)).addOnCompleteListener {
                 if (!it.isSuccessful) {
                     Log.e("REMOTE SET USER", it.exception.toString())
                 }

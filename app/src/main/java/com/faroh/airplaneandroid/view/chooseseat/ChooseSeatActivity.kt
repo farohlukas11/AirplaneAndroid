@@ -1,5 +1,6 @@
 package com.faroh.airplaneandroid.view.chooseseat
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import com.faroh.airplaneandroid.R
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.utils.Formatter
 import com.faroh.airplaneandroid.databinding.ActivityChooseSeatBinding
+import com.faroh.airplaneandroid.view.checkout.CheckoutActivity
 import com.faroh.airplaneandroid.view.detail.DetailActivity
 
 class ChooseSeatActivity : AppCompatActivity() {
@@ -30,6 +32,13 @@ class ChooseSeatActivity : AppCompatActivity() {
             chooseSeatBinding.apply {
                 tvSeat.text = dataString
                 tvTotalPrice.text = Formatter.rupiahFormatter(item.price!! * 2)
+            }
+
+            chooseSeatBinding.btnContinueCheck.setOnClickListener {
+                val intentCheck = Intent(this, CheckoutActivity::class.java)
+                intentCheck.putExtra(CheckoutActivity.DATA_ITEM, item)
+                intentCheck.putExtra(CheckoutActivity.DATA_SEAT, dataString)
+                startActivity(intentCheck)
             }
         }
     }
