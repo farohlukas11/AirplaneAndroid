@@ -2,8 +2,10 @@ package com.faroh.airplaneandroid.core.data.source.remote
 
 import android.util.Log
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
+import com.faroh.airplaneandroid.core.data.source.remote.response.DataResponseDestination
 import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseDestination
 import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseUser
+import com.faroh.airplaneandroid.core.domain.model.CheckoutModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
 import com.faroh.airplaneandroid.core.domain.model.UserModel
@@ -109,15 +111,18 @@ class RemoteDataSource @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    fun getAllDestination(): Flowable<ApiResponse<List<ResponseDestination>>> {
-        val result = PublishSubject.create<ApiResponse<List<ResponseDestination>>>()
+    fun getAllDestination(): Flowable<ApiResponse<List<DataResponseDestination>>> {
+        val result = PublishSubject.create<ApiResponse<List<DataResponseDestination>>>()
 
         firebaseFirestore.collection("destinations").get()
             .addOnSuccessListener { snapshot ->
                 val data = snapshot.documents
                 result.onNext(
                     if (snapshot != null) ApiResponse.Success(data.map {
-                        it.toObject(ResponseDestination::class.java)!!
+                        DataResponseDestination(
+                            id = it.id,
+                            responseDestination = it.toObject(ResponseDestination::class.java)!!
+                        )
                     }) else ApiResponse.Empty
                 )
             }
@@ -126,5 +131,18 @@ class RemoteDataSource @Inject constructor(
                 Log.e("REMOTE GET ALL DESTINATION", it.toString())
             }
         return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    fun checkoutDestination(checkoutModel: CheckoutModel): Completable {
+        firebaseFirestore.collection("transactions")
+            .add(Mapper.mapCheckoutModelToJson(checkoutModel))
+            .addOnCompleteListener {
+                if (!it.isSuccessful) {
+                    Log.e("REMOTE checkout", it.exception.toString())
+                }
+            }.addOnFailureListener {
+                Log.e("REMOTE checkout", it.toString())
+            }
+        return Completable.complete()
     }
 }

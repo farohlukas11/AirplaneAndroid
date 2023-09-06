@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import com.faroh.airplaneandroid.core.data.source.preferences.AirplanePreference
 import com.faroh.airplaneandroid.core.data.source.remote.RemoteDataSource
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
+import com.faroh.airplaneandroid.core.domain.model.CheckoutModel
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
@@ -65,14 +66,14 @@ class AirplaneRepository @Inject constructor(
     override fun signOut() {
         remoteDataSource.signOut()
             .subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
     }
 
     override fun setUser(userModel: UserModel) {
         remoteDataSource.setUser(userModel)
             .subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
     }
 
@@ -137,5 +138,12 @@ class AirplaneRepository @Inject constructor(
                 }
             }
         return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun checkoutDestination(checkoutModel: CheckoutModel) {
+        remoteDataSource.checkoutDestination(checkoutModel)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 }
