@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CheckoutModel(
+data class TransactionModel(
     val amountOrTraveler: Int?,
     val destination: DestinationModel?,
     val grandTotal: Double,

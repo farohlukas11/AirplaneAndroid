@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.faroh.airplaneandroid.MainActivity
-import com.faroh.airplaneandroid.core.domain.model.CheckoutModel
+import com.faroh.airplaneandroid.core.data.Resource
+import com.faroh.airplaneandroid.core.domain.model.TransactionModel
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.utils.Formatter
 import com.faroh.airplaneandroid.core.utils.ToastUtils.showCustomToast
@@ -55,35 +56,75 @@ class CheckoutActivity : AppCompatActivity() {
                 checkoutBinding.tvSeat.text = seat
             }
 
-            checkoutBinding.btnPayNow.setOnClickListener {
-                checkoutViewModel.checkoutDestination(
-                    CheckoutModel(
-                        amountOrTraveler = 2,
-                        destination = item,
-                        grandTotal = grandTotal,
-                        insurance = true,
-                        price = price,
-                        refundable = false,
-                        selectedSeats = seatDestination,
-                        vat = 0.45
-                    )
-                )
+            checkoutViewModel.getUserToken().observe(this) { token ->
+                token?.let {
+                    checkoutViewModel.getUserById(it).observe(this) { response ->
+                        when (response) {
+                            is Resource.Loading -> {}
+                            is Resource.Success -> {
+                                val user = response.data
+                                checkoutBinding.tvPricePay.text =
+                                    Formatter.rupiahFormatter(user?.balance)
 
-                Toast(
-                    this@CheckoutActivity
-                ).showCustomToast(
-                    false,
-                    "Success Checkout ${item.name}",
-                    this@CheckoutActivity
-                )
-                startActivity(Intent(this@CheckoutActivity, MainActivity::class.java))
-                finishAffinity()
+                                checkoutBinding.btnPayNow.setOnClickListener { _ ->
+
+                                    if (user?.balance!! < grandTotal) {
+                                        Toast(
+                                            this@CheckoutActivity
+                                        ).showCustomToast(
+                                            false,
+                                            "Don't Have Checkout ${item.name}",
+                                            this@CheckoutActivity
+                                        )
+                                    } else {
+                                        val userBalance = user.balance - grandTotal
+
+                                        checkoutViewModel
+                                            .checkoutDestination(
+                                                TransactionModel(
+                                                    amountOrTraveler = 2,
+                                                    destination = item,
+                                                    grandTotal = grandTotal,
+                                                    insurance = true,
+                                                    price = price,
+                                                    refundable = false,
+                                                    selectedSeats = seatDestination,
+                                                    vat = 0.45
+                                                )
+                                            )
+
+                                        checkoutViewModel.updateUserBalance(it, userBalance)
+
+                                        Toast(
+                                            this@CheckoutActivity
+                                        ).showCustomToast(
+                                            false,
+                                            "Success Checkout ${item.name}",
+                                            this@CheckoutActivity
+                                        )
+                                        startActivity(
+                                            Intent(
+                                                this@CheckoutActivity,
+                                                MainActivity::class.java
+                                            )
+                                        )
+                                        finishAffinity()
+                                    }
+                                }
+                            }
+
+                            is Resource.Error -> {}
+                        }
+                    }
+                }
             }
         }
     }
+
 
     companion object {
         const val DATA_ITEM = "data_item"
         const val DATA_SEAT = "seat_item"
     }
 }
+

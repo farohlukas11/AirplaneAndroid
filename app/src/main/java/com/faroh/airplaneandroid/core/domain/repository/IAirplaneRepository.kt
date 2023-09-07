@@ -1,7 +1,7 @@
 package com.faroh.airplaneandroid.core.domain.repository
 
 import com.faroh.airplaneandroid.core.data.Resource
-import com.faroh.airplaneandroid.core.domain.model.CheckoutModel
+import com.faroh.airplaneandroid.core.domain.model.TransactionModel
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
@@ -31,5 +31,9 @@ interface IAirplaneRepository {
 
     fun getAllDestination(): Flowable<Resource<List<DestinationModel>>>
 
-    fun checkoutDestination(checkoutModel: CheckoutModel)
+    fun checkoutDestination(transactionModel: TransactionModel)
+
+    fun updateUserBalance(id: String, balance: Double)
+
+    fun getAllTransaction(): Flowable<Resource<List<TransactionModel>>>
 }

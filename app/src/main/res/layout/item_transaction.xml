@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_transaction"
+    android:layout_width="match_parent"
+    android:layout_height="440dp"
+    android:layout_marginVertical="10dp"
+    android:background="@color/white"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_destination_book"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_destination_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="38dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/kBlackColor"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_star_book"
+            app:layout_constraintStart_toEndOf="@id/iv_destination_book"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lake Ciliwung" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_city_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_light"
+            android:maxLines="1"
+            android:textColor="@color/kGreyColor"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_star_book"
+            app:layout_constraintStart_toStartOf="@id/tv_name_book"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_book"
+            tools:text="Tangerang" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_star_book"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="4dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_star"
+            app:layout_constraintBottom_toBottomOf="@id/tv_rating_book"
+            app:layout_constraintEnd_toStartOf="@id/tv_rating_book"
+            app:layout_constraintTop_toTopOf="@id/tv_rating_book" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rating_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/kBlackColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_destination_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_destination_book"
+            tools:text="4.8" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_book_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/booking_details"
+            android:textColor="@color/kBlackColor"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_destination_book" />
+
+        <LinearLayout
+            android:id="@+id/line_traveler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_book_detail">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/traveler"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_person"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/_2_person"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_seat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_traveler">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/seat"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_seat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp"
+                tools:text="A3, B3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_insurance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_seat">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/insurance"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_insurance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/yes"
+                android:textColor="@color/kGreenColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_refundable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_insurance">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/refundable"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/no"
+                android:textColor="@color/kRedColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_vat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_refundable">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/vat"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:text="@string/_45"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_vat">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/price"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_price_book"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp"
+                tools:text="IDR 8.500.690" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_grand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line_price">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_check" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="@string/grand_total"
+                android:textColor="@color/kBlackColor"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_grand_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="end"
+                android:textColor="@color/kPrimaryColor"
+                android:textSize="14sp"
+                tools:text="IDR 12.000.000" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

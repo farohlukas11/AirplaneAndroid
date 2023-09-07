@@ -4,8 +4,9 @@ import android.util.Log
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
 import com.faroh.airplaneandroid.core.data.source.remote.response.DataResponseDestination
 import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseDestination
+import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseTransaction
 import com.faroh.airplaneandroid.core.data.source.remote.response.ResponseUser
-import com.faroh.airplaneandroid.core.domain.model.CheckoutModel
+import com.faroh.airplaneandroid.core.domain.model.TransactionModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
 import com.faroh.airplaneandroid.core.domain.model.UserModel
@@ -133,9 +134,9 @@ class RemoteDataSource @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    fun checkoutDestination(checkoutModel: CheckoutModel): Completable {
+    fun checkoutDestination(transactionModel: TransactionModel): Completable {
         firebaseFirestore.collection("transactions")
-            .add(Mapper.mapCheckoutModelToJson(checkoutModel))
+            .add(Mapper.mapTransactionModelToJson(transactionModel))
             .addOnCompleteListener {
                 if (!it.isSuccessful) {
                     Log.e("REMOTE checkout", it.exception.toString())
@@ -144,5 +145,41 @@ class RemoteDataSource @Inject constructor(
                 Log.e("REMOTE checkout", it.toString())
             }
         return Completable.complete()
+    }
+
+    fun updateUserBalance(id: String, balance: Double): Completable {
+        firebaseFirestore.collection("users").document(id)
+            .update(
+                mapOf(
+                    "balance" to balance
+                )
+            )
+            .addOnCompleteListener {
+                if (!it.isSuccessful) {
+                    Log.e("REMOTE update", it.exception.toString())
+                }
+            }.addOnFailureListener {
+                Log.e("REMOTE update", it.toString())
+            }
+        return Completable.complete()
+    }
+
+    fun getAllTransaction(): Flowable<ApiResponse<List<ResponseTransaction>>> {
+        val result = PublishSubject.create<ApiResponse<List<ResponseTransaction>>>()
+
+        firebaseFirestore.collection("transactions").get()
+            .addOnSuccessListener { snapshot ->
+                val data = snapshot.documents
+                result.onNext(
+                    if (snapshot != null) ApiResponse.Success(data.map {
+                        it.toObject(ResponseTransaction::class.java)!!
+                    }) else ApiResponse.Empty
+                )
+            }
+            .addOnFailureListener {
+                result.onNext(ApiResponse.Error(it.message.toString()))
+                Log.e("REMOTE GET TRANSACTION", it.toString())
+            }
+        return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 }

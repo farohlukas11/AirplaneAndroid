@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import com.faroh.airplaneandroid.core.data.source.preferences.AirplanePreference
 import com.faroh.airplaneandroid.core.data.source.remote.RemoteDataSource
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
-import com.faroh.airplaneandroid.core.domain.model.CheckoutModel
+import com.faroh.airplaneandroid.core.domain.model.TransactionModel
 import com.faroh.airplaneandroid.core.domain.model.DestinationModel
 import com.faroh.airplaneandroid.core.domain.model.SignInBody
 import com.faroh.airplaneandroid.core.domain.model.SignUpBody
@@ -140,10 +140,42 @@ class AirplaneRepository @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun checkoutDestination(checkoutModel: CheckoutModel) {
-        remoteDataSource.checkoutDestination(checkoutModel)
+    override fun checkoutDestination(transactionModel: TransactionModel) {
+        remoteDataSource.checkoutDestination(transactionModel)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
+    }
+
+    override fun updateUserBalance(id: String, balance: Double) {
+        remoteDataSource.updateUserBalance(id, balance)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getAllTransaction(): Flowable<Resource<List<TransactionModel>>> {
+        val result = PublishSubject.create<Resource<List<TransactionModel>>>()
+
+        remoteDataSource.getAllTransaction()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it) {
+                    is ApiResponse.Success -> result.onNext(
+                        Resource.Success(
+                            Mapper.mapTransactionResponseToModel(
+                                it.data
+                            )
+                        )
+                    )
+
+                    is ApiResponse.Empty -> result.onNext(Resource.Success(null))
+                    is ApiResponse.Error -> result.onNext(Resource.Error(it.errorMessage))
+                }
+            }
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 }
