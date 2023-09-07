@@ -56,7 +56,7 @@ class SignInActivity : AppCompatActivity() {
                                     View.GONE
                                 val data = response.data
 
-                                data?.let {
+                                data?.let { token ->
                                     Toast(
                                         this@SignInActivity
                                     ).showCustomToast(
@@ -65,16 +65,16 @@ class SignInActivity : AppCompatActivity() {
                                         this@SignInActivity
                                     )
 
-                                    signInViewModel.setUserToken(it)
+                                    signInViewModel.setUserToken(token)
                                     signInViewModel.setUserState(true)
 
-                                    startActivity(
-                                        Intent(
-                                            this@SignInActivity,
-                                            BonusSaldoActivity::class.java
-                                        )
+                                    val i = Intent(
+                                        this@SignInActivity,
+                                        BonusSaldoActivity::class.java
                                     )
-                                    finishAffinity()
+                                    i.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(i)
                                 }
                             }
 

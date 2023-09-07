@@ -50,7 +50,7 @@ class SaldoFragment : Fragment() {
                         }
 
                         is Resource.Error -> Toast(
-                            requireContext()
+                            requireActivity()
                         ).showCustomToast(
                             true,
                             response.message.toString(),

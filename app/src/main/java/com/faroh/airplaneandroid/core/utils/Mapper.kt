@@ -10,6 +10,7 @@ import com.faroh.airplaneandroid.core.domain.model.UserModel
 object Mapper {
 
     fun mapUserResponseToModel(user: ResponseUser): UserModel = UserModel(
+        id = "",
         email = user.email,
         name = user.name,
         hobby = user.hobby ?: "",

@@ -1,5 +1,7 @@
 package com.faroh.airplaneandroid.core.data.source.remote
 
+import android.app.Activity
+import android.content.Context
 import android.util.Log
 import com.faroh.airplaneandroid.core.data.source.remote.response.ApiResponse
 import com.faroh.airplaneandroid.core.data.source.remote.response.DataResponseDestination
@@ -97,7 +99,7 @@ class RemoteDataSource @Inject constructor(
     fun getUserById(id: String): Flowable<ApiResponse<ResponseUser>> {
         val result = PublishSubject.create<ApiResponse<ResponseUser>>()
 
-        firebaseFirestore.collection("users").document(id).get(Source.SERVER)
+        firebaseFirestore.collection("users").document(id).get()
             .addOnSuccessListener { snapshot ->
                 result.onNext(
                     if (snapshot != null) ApiResponse.Success(
