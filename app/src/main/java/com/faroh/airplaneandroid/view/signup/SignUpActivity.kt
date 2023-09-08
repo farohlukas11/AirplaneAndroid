@@ -35,7 +35,7 @@ class SignUpActivity : AppCompatActivity() {
             val hobby = signUpBinding.etHobby.text.toString()
 
             when {
-                email.isEmpty() && fullName.isEmpty() && password.isEmpty() && hobby.isEmpty() -> Toast(
+                email.isEmpty() || fullName.isEmpty() || password.isEmpty() || hobby.isEmpty() -> Toast(
                     this@SignUpActivity
                 ).showCustomToast(true, "input must be required filled", this@SignUpActivity)
 

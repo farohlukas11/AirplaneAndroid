@@ -34,7 +34,7 @@ class SignInActivity : AppCompatActivity() {
             val password = signInBinding.etPassword.text.toString()
 
             when {
-                email.isEmpty() && password.isEmpty() -> Toast(
+                email.isEmpty() || password.isEmpty() -> Toast(
                     this@SignInActivity
                 ).showCustomToast(true, "input must be required filled", this@SignInActivity)
 

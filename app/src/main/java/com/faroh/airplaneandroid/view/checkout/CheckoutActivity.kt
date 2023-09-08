@@ -102,13 +102,15 @@ class CheckoutActivity : AppCompatActivity() {
                                             "Success Checkout ${item.name}",
                                             this@CheckoutActivity
                                         )
-                                        startActivity(
-                                            Intent(
-                                                this@CheckoutActivity,
-                                                MainActivity::class.java
-                                            )
+                                        val i = Intent(
+                                            this@CheckoutActivity,
+                                            MainActivity::class.java
                                         )
-                                        finishAffinity()
+                                        i.flags =
+                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        startActivity(
+                                            i
+                                        )
                                     }
                                 }
                             }
